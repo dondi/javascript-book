@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Jumping Happy Face</title>
+    <style>
+      div#face {font-size: 500%; position: absolute;}
+    </style>
+  </head>
+  <body>
+    <div id="face">&#x263a;</div>
+    <script>
+      var style = document.getElementById("face").style;
+      var move = function () {
+        style.left = Math.floor(Math.random() * 500) + 'px';
+        style.top = Math.floor(Math.random() * 400) + 'px';
+      }
+      setInterval(move, 2000);
+    </script>
+  </body>
+</html>
