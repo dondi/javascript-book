@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calendar Trends: A Mashup Case Study</title>
+
+    <!-- Styles needed by the date widget. -->
+    <link rel="stylesheet" type="text/css"
+        href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-darkness/jquery-ui.css"/>
+
+    <!--
+      Very simple styles just to put the events and trends side by side.
+    -->
+    <style type="text/css">
+      .date { clear: both; }
+      .category {
+        width: 45%;
+        margin: 0 1em;
+        display: inline-block;
+        vertical-align: top;
+      }
+      .category h4 { margin-top: 0; }
+    </style>
+
+    <script type="text/javascript"
+      src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript"
+      src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="date.js"></script>
+
+    <script type="text/javascript">
+      $(function () {
+        // Make the Ajax animation invisible.
+        $("#ajaxAnimation").hide();
+            
+        // Set up the date picker.
+        $("#datepicker").datepicker({
+          onSelect: function (dateText) {
+            // Set up the model variable.
+            var mashup = {};
+
+            // Set up the function that displays the data in the model.
+            var displayMashup = function () {
+              var mashupHtml = "";
+              $.each(mashup, function (dateKey, mashupItem) {
+                mashupHtml += "<h3>" + dateKey + "</h3>";
+
+                // Write out the events.
+                mashupHtml += "<div class=\"date\">";
+                mashupHtml += "<div class=\"category\"><h4>Events</h4>";
+                mashupHtml += "<ul>";
+                $.each(mashupItem.events, function (i, mashupEvent) {
+                  mashupHtml += "<li>" + mashupEvent + "</li>";
+                });
+                mashupHtml += "</ul></div>";
+
+                // Write out the trends.
+                mashupHtml += "<div class=\"category\"><h4>Trends</h4>";
+                mashupHtml += "<p>";
+                $.each(mashupItem.trends, function (i, mashupTrend) {
+                  if (i > 0) {
+                    mashupHtml += ", ";
+                  }
+                  mashupHtml += mashupTrend;
+                });
+                mashupHtml += "</p></div></div>";
+              });
+
+              $("#results").html(mashupHtml);
+            };
+
+            // Grab the date.
+            var date = new Date(dateText);
+
+            // Clear the content of the results element.
+            $("#results").html("");
+
+            // Show some Ajax feedback animation.
+            $("#ajaxAnimation").show("fast");
+
+            // Start with calling the calendar service.  We then
+            // contact Twitter after we've received and processed
+            // the calendar results.  Note how the two services have
+            // differing formats for their date parameters.
+            $.getJSON("http://javascript.cs.lmu.edu/php/calendar.php",
+              { date: date.toString("yyyyMMdd") },
+              function (result) {
+                // Process the calendar results first: our model data are
+                // JavaScript objects with date strings as properties.  Each
+                // property is then an object that consists of events, and
+                // later, Twitter trends.
+                mashup = {};
+                $.each(result, function (i, event) {
+                  // Each element has only a month and a day.  We convert
+                  // that into a date string with the chosen year.
+                  var dateString = event.month + " " + event.day +
+                    ", " + date.toString("yyyy");
+
+                  // Use the date as a property, then add events to its
+                  // value.
+                  var dateKey = new Date(dateString).toString("yyyy-MM-dd");
+                  if (mashup[dateKey]) {
+                    mashup[dateKey].events.push(event.description);
+                  } else {
+                    // Initialize the mashup single-date object.
+                    mashup[dateKey] = {
+                      events: [ event.description ],
+                      trends: []
+                    };
+                  }
+                });
+
+                // Now we can grab the Twitter trends.  Because this is
+                // outside the page's domain, we need a technique that
+                // works around the same origin policy.  Here, we use
+                // JSONP since it is easily supported by jQuery: just
+                // append "callback=?" to the URL for the getJSON function.
+                $.getJSON(
+                  "http://api.twitter.com/1/trends/weekly.json?callback=?",
+                  {
+                    date: date.toString("yyyy-MM-dd"),
+                    exclude: "hashtags"
+                  },
+                  function (result) {
+                    // For every date in the result, we locate a preexisting
+                    // date, then add the topic to that date.
+                    $.each(result.trends, function (dateKey, trendArray) {
+                      if (mashup[dateKey]) {
+                        $.each(trendArray, function (i, trend) {
+                          mashup[dateKey].trends.push(trend.query);
+                        });
+                      }
+                    });
+
+                    // With the data gathering complete, we can finally
+                    // display the mashup.
+                    displayMashup();
+                    $("#ajaxAnimation").hide("fast");
+                  }
+                );
+              }
+            );
+          }
+        });
+      });
+    </script>
+
+  </head>
+    
+  <body>
+    <h1>Trending Term and Calendar Events Mashup</h1>
+
+    <p>This mashup case study combines the events returned by our
+    homegrown calendar service with Twitter&rsquo;s trending topics service
+    for a given date. To use it, click on then navigate the date widget
+    below. As you navigate, Ajax calls retrieve both the calendar events and
+    trending topics for that date, then displays the information side by
+    side.</p>
+    
+    <p>(the date picker widget is by the <a
+    href="http://jqueryui.com">jQuery UI</a> project)</p> 
+
+    <p><label for="datepicker"><b>Date:</b></label>
+      <input type="text" id="datepicker" />
+      <img id="ajaxAnimation" src="../images/loadera16.gif" /></p>
+    
+    <div id="results"></div>
+  </body>
+</html>

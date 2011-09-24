@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "name": "Acme Roadrunner Trap",
+      "manufacturer": "Acme Corporation",
+      "price": 500,
+      "availability": "in stock"
+    },
+
+    {
+      "name": "Acme Roadrunner Decoy",
+      "manufacturer": "Acme Corporation",
+      "price": 750,
+      "availability": "backorder"
+    }
+  ],
+
+  "suggestions": [
+    {
+      "name": "Ultimate Fake Tunnel",
+      "manufacturer": "Ultimate Fakers Corporation",
+      "price": 200,
+      "availability": "in stock"
+    }
+  ],
+
+  "categories": [ "Cages", "Traps", "Signs" ]
+}
