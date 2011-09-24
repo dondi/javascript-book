@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+
+        <title>Gesture Event Demonstration</title>
+
+        <style>
+            /* Keep text from getting highlighted/selected. */
+            body {
+                user-select: none;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+            }
+
+            /* Increase the size of the font for easier touching.
+               We also set the opacity halfway so that rotating in
+               either direction produces a visible change. */
+            p { font-size: 250%; opacity: 0.5; }
+        </style>
+
+        <!-- Load up the controller code. -->
+        <script src="text-gesture.js"></script>
+    </head>
+    
+    <body>
+        <p>This web page responds to gesture events only, so make sure to
+        view this on a device with a multitouch display.</p>
+        
+        <p>"Pinching" a paragraph will increase and decrease its font
+        size.  Rotating two fingers on a paragraph will change its opacity
+        (think of it like turning an "opacity knob").</p>
+        
+        <p>Note how rotation and scaling may change simultaneously.
+        Thus, in practice it is typically less confusing for the user
+        if a gesture-capable web page sets up its event handlers so that
+        changes are made according to just scaling or just rotation.</p>
+    </body>
+</html>

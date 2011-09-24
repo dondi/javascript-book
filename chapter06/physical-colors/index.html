@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+
+        <title>Visual Physical Event Demonstration</title>
+
+        <!-- Layout customizations: we'll leave these unexplained
+             for now.  They shouldn't be too hard to look up. -->
+        <style>
+            #swatch-container {
+                display: table;
+                border-collapse: collapse;
+                margin: 1ex auto;
+            }
+
+            #swatch-container > div { display: table-row; }
+            #swatch-container > div > div {
+                display: table-cell; padding: 1ex;
+                text-align: center;
+            }
+            
+            #acceleration-swatch, #acceleration-gravity-swatch,
+            #rot-rate-swatch, #orientation-swatch {
+                background-color: rgb(127, 127, 127);
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+
+        <!-- Load up the controller code. -->
+        <script src="physical-colors.js"></script>
+    </head>
+    
+    <body>
+        <p>This web page responds to physical events only, so make sure
+        to view this on a device with an accelerometer and/or gyroscope.</p>
+        
+        <p>The color swatches below represent any reported device motion
+        and orientation data as colors rather than coordinates.  Gray
+        swatches mean that the corresponding data is not available
+        for your device.</p>
+        
+        <p>Moving your device should change the color swatches in ways
+        that can be correlated with the movement that is taking place.</p>
+
+        <div id="swatch-container">
+            <div>
+                <div><div id="acceleration-swatch"></div></div>
+                <div><div id="acceleration-gravity-swatch"></div></div>
+            </div>
+            <div>
+                <div>Acceleration</div>
+                <div>With gravity</div>
+            </div>
+            <div>
+                <div><div id="rot-rate-swatch"></div></div>
+                <div><div id="orientation-swatch"></div></div>
+            </div>
+            <div>
+                <div>Rotation rate</div>
+                <div>Orientation</div>
+            </div>
+        </div>
+    </body>
+</html>

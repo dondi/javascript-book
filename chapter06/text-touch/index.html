@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+
+        <title>Touch Event Demonstration</title>
+
+        <style>
+            /* Keep text from getting highlighted/selected. */
+            body {
+                user-select: none;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+            }
+
+            /* Increase the size of the font for easier touching. */
+            p { font-size: 250%; }
+        </style>
+
+        <!-- Load up the controller code. -->
+        <script src="text-touch.js"></script>
+    </head>
+    
+    <body>
+        <p>This web page responds to touch events only, so make sure to view this
+        on a device with a multitouch display.</p>
+        
+        <p>Touching a paragraph then moving your finger horizontally will increase
+        or decrease its left margin accordingly.  A paragraph with a touch on it
+        is displayed in italics.</p>
+        
+        <p>Be sure to try this with multiple fingers on multiple paragraphs!</p> 
+    </body>
+</html>
