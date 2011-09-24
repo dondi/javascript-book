@@ -1,0 +1,1 @@
+car.color = favoriteColor || "black";
