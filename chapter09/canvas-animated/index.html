@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Canvas Animation Example</title>
+    <script src="../draw-basketball.js"></script>
+    <script type="text/javascript">
+      window.onload = function () {
+          // Pay attention to the similarities between this and the code in
+          // canvas-transforms.
+          var canvas = document.createElement("canvas");
+          canvas.width = 550; canvas.height = 350;
+          document.body.appendChild(canvas);
+
+          /* Note how, aside from the conversion of the for loop into a
+             nextFrame function, the code has not otherwise changed much
+             from the transformation example.  The only other differences
+             are adjustments to the values: they make smaller changes to
+             accommodate the frequency with which the canvas is redrawn. */
+          var renderingContext = canvas.getContext("2d");
+          var xStep = 2.5, yStep = -10.0;
+
+          // Variables to represent the absolute position, rotation, and
+          // scaling of the ball.
+          var x = 5, y = 300, angle = 0;
+          var compression = 0.5;
+
+          // Start the ball at the bottom-left of the canvas.
+          var nextFrame = function () {
+              // Always return to the same state after each iteration.
+              renderingContext.save();
+
+              // Clear the canvas.
+              renderingContext.clearRect(0, 0, canvas.width, canvas.height);
+
+              // Move the ball to the current position.
+              renderingContext.translate(x, y);
+
+              // Scale and rotate the ball.
+              renderingContext.scale(1, compression);
+              renderingContext.rotate(angle);
+
+              // *Now* draw.
+              drawBasketball(renderingContext);
+
+              // Calculate the new position, rotation, and scale.
+              x += xStep; y += yStep; yStep += 0.25;
+              angle += Math.PI / 180; // 1 degree.
+              compression += (compression <= 0.95) ? 0.05 : 0;
+
+              // Quick check to see if the ball has hit the "floor."
+              // This results in a "bounce."
+              if (y + yStep > 300) {
+                  compression = 0.5;
+                  y = 300; yStep = -10.0;
+              }
+
+              // One more check to see if the ball has gone "off-canvas."
+              // This moves the ball back to the left side.
+              if (x > canvas.width) {
+                  x = 50;
+              }
+
+              renderingContext.restore();
+          };
+
+          // One hundred frames per second!
+          setInterval(nextFrame, 10);
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Keep Your Eye on the (Moving) Ball!</h1>
+  </body>
+</html>

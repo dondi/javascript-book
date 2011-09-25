@@ -1,0 +1,100 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" onload="editorSetup();">
+    <!-- Generalized functionality for editing curves. -->
+    <script xlink:href="curve-editor.js" />
+
+    <!-- Subtle gradients for the draggable elements, for a 3D-ish effect. -->
+    <linearGradient id="vertexGradient" gradientUnits="objectBoundingBox"
+      x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="rgb(0, 0, 200)" />
+        <stop offset="10%" stop-color="blue" />
+        <stop offset="100%" stop-color="black" />
+    </linearGradient>
+
+    <radialGradient id="controlGradient" gradientUnits="objectBoundingBox"
+      cx="0.5" cy="0.5" r="0.5" fx="0.3" fy="0.3">
+        <stop offset="0%" stop-color="white" />
+        <stop offset="50%" stop-color="green" />
+        <stop offset="100%" stop-color="black" />
+    </radialGradient>
+      
+    <!-- The line elements connect the vertices to their control points.
+         Note the absence of coordinates: the script takes care of those.
+         We also provide these elements first so that they are at the "bottom"
+         of the drawing. -->
+    <line id="startConnector" stroke="gray" stroke-dasharray="5,3" />
+    <line id="endConnector" stroke="gray" stroke-dasharray="5,3" />
+
+    <!-- The path is the resulting curve.  Similarly to the lines, the d
+         attribute is not provided: the script will handle that. -->
+    <path id="path" fill="none" stroke="black" stroke-width="2">
+        <animateColor attributeName="stroke" dur="5s" repeatCount="indefinite"
+          values="black;rgb(220, 0, 0);black" />
+        <animate attributeName="stroke-width" dur="5s" repeatCount="indefinite"
+          values="2;4;2" />
+    </path>
+
+    <!-- The two rect and two circle elements form the basis of the curve. -->
+    <rect id="startVertex" x="40" y="27" width="10" height="10"
+      fill="url(#vertexGradient)" />
+    <rect id="endVertex" x="195" y="195" width="10" height="10"
+      fill="url(#vertexGradient)" />
+
+    <circle id="startControl" cx="25" cy="122" r="5"
+      fill="url(#controlGradient)" />
+    <circle id="endControl" cx="150" cy="200" r="5"
+      fill="url(#controlGradient)" />
+
+    <script><![CDATA[
+    var editorSetup = function () {
+        var updateSampleCurve = function () {
+            updateCurve(document.getElementById("startVertex"),
+                document.getElementById("endVertex"),
+                document.getElementById("startControl"),
+                document.getElementById("endControl"),
+                document.getElementById("startConnector"),
+                document.getElementById("endConnector"),
+                document.getElementById("path"));
+        };
+        
+        var dragElement = null;
+
+        var getStartDragHandler = function (moveFunction) {
+            return function (event) {
+                dragElement = event.target;
+                document.onmousemove = function (event) {
+                    moveFunction(event);
+                    updateSampleCurve();
+                };
+            };
+        };
+    
+        var endDragHandler = function (event) {
+            document.onmousemove = null;
+            dragElement = null;
+        };
+    
+        var updateVertex = function (event) {
+            dragElement.setAttribute("x", event.clientX - dragElement.getAttribute("width") / 2);
+            dragElement.setAttribute("y", event.clientY - dragElement.getAttribute("height") / 2);
+        };
+    
+        var updateControl = function (event) {
+            dragElement.setAttribute("cx", event.clientX);
+            dragElement.setAttribute("cy", event.clientY);
+        };
+    
+        return function () {
+            document.getElementById("startVertex").onmousedown = getStartDragHandler(updateVertex);
+            document.getElementById("endVertex").onmousedown = getStartDragHandler(updateVertex);
+            document.getElementById("startVertex").onmouseup = endDragHandler;
+            document.getElementById("endVertex").onmouseup = endDragHandler;
+            document.getElementById("startControl").onmousedown = getStartDragHandler(updateControl);
+            document.getElementById("endControl").onmousedown = getStartDragHandler(updateControl);
+            document.getElementById("startControl").onmouseup = endDragHandler;
+            document.getElementById("endControl").onmouseup = endDragHandler;
+            updateSampleCurve();
+        };
+    }();
+	]]></script>
+</svg>

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>A Simple Canvas Image Example</title>
+    
+    <script type="text/javascript">
+      window.onload = function () {
+        // Simple canvas image drawing.
+        var canvas = document.getElementById("canvas");
+        var girlImage = document.getElementById("girl-image");
+        var boyImage = document.getElementById("boy-image");
+
+        var renderingContext = canvas.getContext("2d");
+        renderingContext.shadowOffsetX = 0;
+        renderingContext.shadowOffsetY = 4;
+        renderingContext.shadowBlur = 16;
+          
+        renderingContext.shadowColor = "rgba(120, 120, 255, 0.5)";
+        renderingContext.drawImage(boyImage, 262, 12, 240, 320);
+        renderingContext.drawImage(boyImage, 177, 510, 100, 60, 273, 400, 100, 60);
+        renderingContext.drawImage(boyImage, 380, 488, 100, 60, 142, 400, 100, 60);
+
+        renderingContext.shadowColor = "rgba(255, 120, 120, 0.5)";
+        renderingContext.drawImage(girlImage, 12, 12, 240, 320);
+        renderingContext.drawImage(girlImage, 250, 365, 100, 60, 400, 400, 100, 60);
+        renderingContext.drawImage(girlImage, 445, 315, 100, 60, 12, 400, 100, 60);
+
+        renderingContext.shadowColor = "rgba(120, 120, 120, 0.5)";
+        renderingContext.shadowOffsetX = 4;
+        renderingContext.fillStyle = "rgba(80, 200, 80, 0.5)";
+        renderingContext.beginPath();
+        renderingContext.moveTo(12, 400);
+        renderingContext.lineTo(112, 400);
+        renderingContext.lineTo(166, 117);
+        renderingContext.fill();
+
+        renderingContext.beginPath();
+        renderingContext.moveTo(273, 400);
+        renderingContext.lineTo(373, 400);
+        renderingContext.lineTo(337, 177);
+        renderingContext.fill();
+
+        renderingContext.beginPath();
+        renderingContext.moveTo(142, 400);
+        renderingContext.lineTo(242, 400);
+        renderingContext.lineTo(397, 173);
+        renderingContext.fill();
+
+        renderingContext.beginPath();
+        renderingContext.moveTo(400, 400);
+        renderingContext.lineTo(500, 400);
+        renderingContext.lineTo(105, 130);
+        renderingContext.fill();
+      };
+    </script>
+  </head>
+  <body>
+    <img id="girl-image" src="girl.jpg" alt="girl" style="display: none" />
+    <img id="boy-image" src="boy.jpg" alt="boy" style="display: none" />
+    <canvas id="canvas" width="512" height="512">
+      You need a web browser that supports the <code>canvas</code> element.
+    </canvas>
+  </body>
+</html>
