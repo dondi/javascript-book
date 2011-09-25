@@ -1,0 +1,55 @@
+#hanoi {
+    position: relative;
+}
+
+.base, .tower, .ring, .oddring {
+    position: absolute;
+}
+
+.base {
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 10px;
+    box-shadow: rgba(128, 128, 128, 0.85) 0px 4px 16px;
+    -moz-box-shadow: rgba(128, 128, 128, 0.85) 0px 4px 16px;
+    -webkit-box-shadow: rgba(128, 128, 128, 0.85) 0px 4px 16px;
+    background-image: linear-gradient(brown, black);
+    background-image: -moz-linear-gradient(brown, black);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%,
+        color-stop(0, brown), color-stop(1, black));
+}
+
+.tower {
+    bottom: 10px;
+    box-shadow: rgba(128, 128, 128, 0.75) 0px 7px 12px;
+    -moz-box-shadow: rgba(128, 128, 128, 0.75) 0px 7px 12px;
+    -webkit-box-shadow: rgba(128, 128, 128, 0.75) 0px 7px 12px;
+    background-image: linear-gradient(left, brown, black);
+    background-image: -moz-linear-gradient(left, brown, black);
+    background-image: -webkit-gradient(linear, 0% 0%, 100% 0%,
+        color-stop(0, brown), color-stop(1, black));
+}
+
+.ring, .oddring {
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    box-shadow: rgba(128, 128, 128, 0.5) 2px 4px 7px;
+    -moz-box-shadow: rgba(128, 128, 128, 0.5) 2px 4px 7px;
+    -webkit-box-shadow: rgba(128, 128, 128, 0.5) 2px 4px 7px;
+}
+
+.ring {
+    background-image: linear-gradient(left, rgb(255, 200, 64), rgb(64, 50, 16));
+    background-image: -moz-linear-gradient(left, rgb(255, 200, 64), rgb(64, 50, 16));
+    background-image: -webkit-gradient(linear, 0% 0%, 100% 0%,
+        color-stop(0, rgb(255, 200, 64)), color-stop(1, rgb(64, 50, 16)));
+}
+
+.oddring {
+    background-image: linear-gradient(left, rgb(64, 200, 255), rgb(16, 50, 64));
+    background-image: -moz-linear-gradient(left, rgb(64, 200, 255), rgb(16, 50, 64));
+    background-image: -webkit-gradient(linear, 0% 0%, 100% 0%,
+        color-stop(0, rgb(64, 200, 255)), color-stop(1, rgb(16, 50, 64)));
+}

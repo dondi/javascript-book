@@ -1,0 +1,10 @@
+var footer = document.getElementById("footer");
+footer.innerHTML = "Fun with sizes and spaces";
+footer.style.width = "100px";
+footer.style.height = "100px";
+footer.style.borderStyle = "outset";
+footer.style.borderWidth = "2px";
+footer.style.marginLeft = "300px";
+footer.style.marginTop = "100px";
+footer.style.paddingRight = "50px";
+footer.style.paddingBottom = "200px";

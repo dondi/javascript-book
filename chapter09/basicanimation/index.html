@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Basic Animation</title>
+        
+        <link rel="stylesheet" type="text/css" href="basicanimation.css" />
+
+        <!-- We've separated most of the JavaScript to different files. -->
+        <script type="text/javascript" src="basicanimation.js"></script>
+        <script type="text/javascript">
+            window.onload = function () {
+                // Set up the initial event handlers.
+                document.getElementById("cv-button").onclick = startConstantVelocityAnimation;
+                document.getElementById("fade-button").onclick = startFadeOutAnimation;
+                document.getElementById("rv-button").onclick = startEasedAnimation;
+                document.getElementById("ease-in").onclick = function () {
+                    easingFunction = quadEaseIn;
+                };
+
+                document.getElementById("ease-out").onclick = function () {
+                    easingFunction = quadEaseOut;
+                };
+
+                document.getElementById("ease-in-out").onclick = function () {
+                    easingFunction = quadEaseInAndOut;
+                };
+            };
+        </script>
+    </head>
+    
+    <body>
+        <h1>Basic Animation Demonstrations</h1>
+        
+        <p>All velocities are measured &ldquo;per frame,&rdquo; with a frame
+        being updated every 30 milliseconds.</p>
+
+        <div id="cv">
+            <h2>Constant Velocity</h2>
+            
+            <div class="instructions">
+                Enter a velocity:
+                <input id="cv-velocity" type="text" size="4" value="10" />
+                then click
+                <input id="cv-button" type="button" value="Start Animation" />.
+            </div>
+            
+            <div class="container">
+                <div id="cv-box" class="box">
+                </div>
+            </div>
+        </div>
+        
+        <div id="fade">
+            <h2>Fading In and Out</h2>
+            
+            <div class="instructions">
+                Enter the time in which to fade in seconds:
+                <input id="fade-time" type="text" size="4" value="1" />
+                then click
+                <input id="fade-button" type="button" value="Fade Out" />.
+            </div>
+            
+            <div class="container">
+                <div id="fade-box" class="box">
+                </div>
+            </div>
+        </div>
+        
+        <div id="rv">
+            <h2>&ldquo;Ramped&rdquo; or &ldquo;Eased&rdquo; Animation</h2>
+            
+            <div class="instructions">
+                Enter the duration of the animation (in seconds):
+                <input id="rv-duration" type="text" size="4" value="1" />
+                and choose the desired &ldquo;easing&rdquo; function:
+                <p>
+                    <input type="radio" id="ease-in" name="ease" checked="checked" />
+                    <label for="ease-in">Quadratic Ease In</label><br/>
+                    <input type="radio" id="ease-out" name="ease" />
+                    <label for="ease-out">Quadratic Ease Out</label><br/>
+                    <input type="radio" id="ease-in-out" name="ease" />
+                    <label for="ease-in-out">Quadratic Ease In and Out</label>
+                </p>
+                ...then click
+                <input id="rv-button" type="button" value="Start Animation" />.
+            </div>
+            
+            <div class="container">
+                <div id="rv-box" class="box">
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
