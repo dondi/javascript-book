@@ -5,7 +5,7 @@
  * c.radius => 5
  * c.area() => 25pi
  * c.perimeter() => 10pi
- * c.brighten(1.1) changes color to {red: .22, green: .88, blue: .363}
+ * c.brighten(1.1) changes color to {red: 0.22, green: 0.88, blue: 0.363}
  */
 var ColoredCircle =  function (radius, color) {
     this.radius = radius;
