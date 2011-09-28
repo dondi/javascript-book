@@ -1,6 +1,6 @@
 /*
  * Returns the kth Fibonacci number, using recursion and a cache.
- * Precondition: k is a non-negative integer less than 75.
+ * Precondition: k is a nonnegative integer less than 75.
 */
 var fib = function (k) {
  

@@ -1,6 +1,6 @@
 /*
  * Returns the kth Fibonacci number. Precondition: k is a
- * non-negative integer less than 75.
+ * nonnegative integer less than 75.
  */
 var fib = function (k) {
     if (k <= 1) {
