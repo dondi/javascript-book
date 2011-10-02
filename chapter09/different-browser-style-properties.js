@@ -1,5 +1,5 @@
 var footer = document.getElementById("footer");
-footer.innerHTML = "Look ma, no images!";
+footer.innerHTML = "Look, ma, no images!";
 
 // Mozilla version: WebKit ignores this.
 document.body.style.backgroundImage =
