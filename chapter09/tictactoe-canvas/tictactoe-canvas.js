@@ -63,11 +63,11 @@ onload = function () {
             boardContext.shadowColor = "rgba(0, 0, 0, 0.75)";
 
             // We draw within a region whose margin is the grid thickness.
-            var cellWidth = board.width / 3 - (gridThickness << 1);
-            var cellHeight = board.height / 3 - (gridThickness << 1);
-            var side = Math.min(cellWidth, cellHeight);
-            var xCorner = side >> 2;
-            var xSize = side * 3 >> 2;
+            var cellWidth = board.width / 3 - (gridThickness << 1),
+                cellHeight = board.height / 3 - (gridThickness << 1),
+                side = Math.min(cellWidth, cellHeight),
+                xCorner = side >> 2,
+                xSize = side * 3 >> 2;
 
             // The translate call helps to simplify the path coordinates.
             boardContext.translate(x, y);
@@ -92,9 +92,9 @@ onload = function () {
             boardContext.shadowColor = "rgba(0, 0, 0, 0.75)";
 
             // We draw within a region whose margin is the grid thickness.
-            var cellWidth = board.width / 3 - (gridThickness << 1);
-            var cellHeight = board.height / 3 - (gridThickness << 1);
-            var radius = Math.min(cellWidth, cellHeight) * 3 >> 3;
+            var cellWidth = board.width / 3 - (gridThickness << 1),
+                cellHeight = board.height / 3 - (gridThickness << 1),
+                radius = Math.min(cellWidth, cellHeight) * 3 >> 3;
 
             // The translate call helps to simplify the path coordinates.
             boardContext.translate(x + gridThickness + (cellWidth >> 1),
