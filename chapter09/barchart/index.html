@@ -3,11 +3,16 @@
   <head>
     <meta charset="UTF-8"/>
     <title>Bar Chart: An HTML/CSS Graphics Case Study</title>
+  </head>
+  <body>
+    <h1>A JavaScript-Generated Bar Chart</h1>
+    <p>Edit the <code>onload</code> function to change the data!</p>
+
     <!-- We separate the bar chart generator from the bar chart
-         data (so we don't have to change our code when if the
-         numbers change).  This manifests by placing the function
-         itself in a separate JavaScript file, but invoking it
-         with an inline script that includes the data. -->
+         data (so we don't have to change our code if the numbers
+         change).  This manifests by placing the function itself
+         in a separate JavaScript file, but invoking it with an
+         inline script that includes the data. -->
     <script src="barchart-module.js"></script>
     <script>
       onload = function () {
@@ -18,9 +23,5 @@
         ]));
       };
     </script>
-  </head>
-  <body>
-    <h1>A JavaScript-Generated Bar Chart</h1>
-    <p>Edit the <code>onload</code> function to change the data!</p>
   </body>
 </html>
