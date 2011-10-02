@@ -1,5 +1,6 @@
 var renderingContext = canvas.getContext("2d");
 renderingContext.fillStyle = "rgb(0, 255, 255)";
+renderingContext.strokeStyle = "black";
 renderingContext.beginPath();
 renderingContext.moveTo(10, 10);
 renderingContext.lineTo(110, 10);

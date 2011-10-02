@@ -1,7 +1,7 @@
 var renderingContext = canvas.getContext("2d");
 var xStep = 25, yStep = -100;
 
-// Start the ball at the bottom-left of the canvas,
+// Start the ball at the bottom left of the canvas,
 // and compressed vertically due to a bounce.
 renderingContext.translate(50, 300);
 renderingContext.scale(1, 0.5);

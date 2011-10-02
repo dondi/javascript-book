@@ -147,7 +147,7 @@ onload = function () {
         turn = 'X';
         score = {'X': 0, 'O': 0};
         moves = 0;
-        for (var i = 0; i < squares.length; i++) {
+        for (var i = 0; i < squares.length; i += 1) {
             squares[i].paint = squarePainters['\xA0'];
         }
         
@@ -155,7 +155,7 @@ onload = function () {
     };
 
     var win = function (score) {
-        for (var i = 0; i < wins.length; i++) {
+        for (var i = 0; i < wins.length; i += 1) {
             if ((wins[i] & score) === wins[i]) {
                 return true;
             }
@@ -169,7 +169,7 @@ onload = function () {
     var getSquare = function (x, y) {
         var cellWidth = board.width / 3;
         var cellHeight = board.height / 3;
-        for (var i = 0; i < squares.length; i++) {
+        for (var i = 0; i < squares.length; i += 1) {
             if ((x > squares[i].x) && (x < squares[i].x + cellWidth) &&
                 (y > squares[i].y) && (y < squares[i].y + cellHeight)) {
                 return squares[i];
@@ -364,9 +364,9 @@ onload = function () {
 
         var indicator = 1;
         var y = 0;
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 3; i += 1) {
             var x = 0;
-            for (var j = 0; j < 3; j++) {
+            for (var j = 0; j < 3; j += 1) {
                 squares.push({ x: x, y: y, indicator: indicator });
                 indicator += indicator;
                 x += board.width / 3;

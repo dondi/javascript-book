@@ -47,7 +47,7 @@ var startNewGame = function () {
 };
 
 var win = function (score) {
-    for (var i = 0; i < wins.length; i++) {
+    for (var i = 0; i < wins.length; i += 1) {
         if ((wins[i] & score) === wins[i]) {
             return true;
         }
@@ -81,8 +81,8 @@ var set = function () {
 onload = function () {
     // Note how we *really* rely on IDs being assigned properly.
     var indicator = 1;
-    for (var i = 0; i < 3; i++) {
-        for (var j = 0; j < 3; j++) {
+    for (var i = 0; i < 3; i += 1) {
+        for (var j = 0; j < 3; j += 1) {
             var cell = document.getElementById("cell" + i + j);
             cell.indicator = indicator;
             cell.onclick = set;

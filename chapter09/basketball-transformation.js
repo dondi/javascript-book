@@ -6,7 +6,7 @@ var xStep = 25, yStep = -100;
 var x = 50, y = 300, angle = 0;
 var compression = 0.5;
 
-// Start the ball at the bottom-left of the canvas.
+// Start the ball at the bottom left of the canvas.
 for (var i = 0; i < 19; i += 1) {
     // Always return to the same state after each iteration.
     renderingContext.save();
