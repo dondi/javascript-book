@@ -15,7 +15,7 @@ $(document).ready(function () {
         same(Stats.median([3]), 3, "median of one");
         same(Stats.median([10, 12]), 11, "median of two");
         same(Stats.median([6, 3, 4, 1, 2, 5, 7]), 4, "median of many");
-        ok(isNaN(Stats.median([])));
+        ok(isNaN(Stats.median([])), "median of [] is NaN");
     });
 
     test("Range Tests", function () {

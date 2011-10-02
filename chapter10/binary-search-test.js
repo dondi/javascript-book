@@ -3,12 +3,12 @@ $(document).ready(function () {
     module("Binary Search");
 
     // Test empty array
-    test("Exmpty array", function () {
+    test("Empty array", function () {
         ok(binarySearch([], 100) === -1);
     });
 
-    // Test one element array
-    test("One element array", function () {
+    // Test one-element array
+    test("One-element array", function () {
         ok(binarySearch([5], 5) === 0);
         ok(binarySearch([5], 8) === -1);
     });
