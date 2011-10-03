@@ -85,14 +85,22 @@
         };
     
         return function () {
-            document.getElementById("startVertex").onmousedown = getStartDragHandler(updateVertex);
-            document.getElementById("endVertex").onmousedown = getStartDragHandler(updateVertex);
-            document.getElementById("startVertex").onmouseup = endDragHandler;
-            document.getElementById("endVertex").onmouseup = endDragHandler;
-            document.getElementById("startControl").onmousedown = getStartDragHandler(updateControl);
-            document.getElementById("endControl").onmousedown = getStartDragHandler(updateControl);
-            document.getElementById("startControl").onmouseup = endDragHandler;
-            document.getElementById("endControl").onmouseup = endDragHandler;
+            document.getElementById("startVertex").onmousedown =
+                getStartDragHandler(updateVertex);
+            document.getElementById("endVertex").onmousedown =
+                getStartDragHandler(updateVertex);
+            document.getElementById("startVertex").onmouseup =
+                endDragHandler;
+            document.getElementById("endVertex").onmouseup =
+                endDragHandler;
+            document.getElementById("startControl").onmousedown =
+                getStartDragHandler(updateControl);
+            document.getElementById("endControl").onmousedown =
+                getStartDragHandler(updateControl);
+            document.getElementById("startControl").onmouseup =
+                endDragHandler;
+            document.getElementById("endControl").onmouseup =
+                endDragHandler;
             updateSampleCurve();
         };
     }();

@@ -41,10 +41,10 @@ var updateCurve = function (startVertexElement, endVertexElement,
   startControlElement, endControlElement,
   startConnectorElement, endConnectorElement, path) {
     // Grab the data needed for the path.
-    var startVertex = getCenter(startVertexElement);
-    var endVertex = getCenter(endVertexElement);
-    var startControl = getControlCenter(startControlElement);
-    var endControl = getControlCenter(endControlElement);
+    var startVertex = getCenter(startVertexElement),
+        endVertex = getCenter(endVertexElement),
+        startControl = getControlCenter(startControlElement),
+        endControl = getControlCenter(endControlElement);
 
     // Build the path data string.        
     var pathData = "M" + startVertex.x + "," + startVertex.y + " ";

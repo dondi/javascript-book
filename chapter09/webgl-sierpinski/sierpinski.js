@@ -115,11 +115,13 @@ var startSierpinski = function (canvas) {
     // Pass the calculated vertices and normals to WebGL.
     var vertexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices),
+        gl.STATIC_DRAW);
     
     var normalBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normals),
+        gl.STATIC_DRAW);
     
     // Set up shaders: we're inlining the source here for simplicity.  Shaders
     // are otherwise kept separate for easier maintenance.
@@ -207,15 +209,15 @@ var startSierpinski = function (canvas) {
     var normalVector = gl.getAttribLocation(shaderProgram, "normalVector");
     gl.enableVertexAttribArray(normalVector);
 
-    var modelViewMatrixLocation = gl.getUniformLocation(shaderProgram, "modelViewMatrix");
-    var projectionMatrixLocation = gl.getUniformLocation(shaderProgram, "projectionMatrix");
-    var normalMatrixLocation = gl.getUniformLocation(shaderProgram, "normalMatrix");
+    var modelViewMatrixLocation = gl.getUniformLocation(shaderProgram, "modelViewMatrix"),
+        projectionMatrixLocation = gl.getUniformLocation(shaderProgram, "projectionMatrix"),
+        normalMatrixLocation = gl.getUniformLocation(shaderProgram, "normalMatrix");
 
     // Set up the requisite matrices and the values that determine them.
-    var modelViewMatrix = new Matrix4x4();
-    var projectionMatrix = new Matrix4x4();
-    var viewerLocation = { x: 0.0, y: 0, z: 20.0 };
-    var rotationAroundX = 0.0, rotationAroundY = -90.0;
+    var modelViewMatrix = new Matrix4x4(),
+        projectionMatrix = new Matrix4x4(),
+        viewerLocation = { x: 0.0, y: 0, z: 20.0 },
+        rotationAroundX = 0.0, rotationAroundY = -90.0;
     
     /*
      * Displays the scene.
@@ -254,8 +256,8 @@ var startSierpinski = function (canvas) {
     };
 
     // Set up event handlers: we want a drag-to-rotate.
-    var xDragStart, yDragStart;
-    var xRotationStart, yRotationStart;
+    var xDragStart, yDragStart,
+        xRotationStart, yRotationStart;
     var cameraRotate = function (event) {
         rotationAroundX = xRotationStart + yDragStart - event.clientY;
         rotationAroundY = yRotationStart + xDragStart - event.clientX;
