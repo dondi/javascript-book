@@ -213,7 +213,13 @@ onload = function () {
         // The animation is just an embellishment, so don't let it take
         // too long.
         var frameTotal = 15;
-        var frameCount = 0;
+        
+        // We do not start the frameCount at zero because this
+        // leads to a singular transformation that potentially
+        // breaks the Firefox canvas implementation.
+        //
+        // (Firefox bug #612033)
+        var frameCount = 1;
 
         // Start the animation.
         var nextFrame = setInterval(function () {
