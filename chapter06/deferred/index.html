@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Deferred Execution</title>
+    </head>
+    
+    <body>
+        <h1>setTimeout() Demonstration</h1>
+        
+        <div id="download">
+            <h2>File Download</h2>
+            
+            <div id="before">
+                <input id="startDownload" type="button" value="Start Download" />
+            </div>
+            
+            <div id="after" style="display: none">
+                <p>Download will begin 5 seconds after you clicked <i>Start Download</i>...</p>
+                <input id="cancelDownload" type="button" value="Cancel Download" />
+            </div>                
+        </div>
+        
+        <h1>setInterval() Demonstration</h1>
+        
+        <div id="stopwatch">
+            <h2>Stopwatch</h2>
+            
+            <p>Click on <i>Start</i> and <i>Stop</i> to control the stopwatch,
+               and click <i>Reset</i> to set the time back to zero.</p>
+            
+            <div id="currentTime">
+                0:00:00:000
+            </div>
+            
+            <p>
+                <input id="toggleTimer" type="button" value="Start" />
+                <input id="resetTimer" type="button" value="Reset" />
+            </p>
+        </div>
+        
+        <!-- We've separated most of the JavaScript to different files. -->
+        <script type="text/javascript" src="download.js"></script>
+        <script type="text/javascript" src="stopwatch.js"></script>
+        <script type="text/javascript">
+            window.onload = function () {
+                // Set everything up.
+                document.getElementById("startDownload").onclick = startDownload;
+                document.getElementById("cancelDownload").onclick = cancelDownload;
+                document.getElementById("resetTimer").onclick = resetTimer;
+                resetTimer();
+            };
+        </script>
+    </body>
+</html>
