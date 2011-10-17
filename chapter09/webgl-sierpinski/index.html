@@ -17,12 +17,16 @@
 
     <p>Drag the mouse to rotate the tetrahedron.</p>
 
-    <!-- Some HTML/CSS trickery to put the tetrahedron on top of the
-         Wikipedia page about it. -->    
+    <!-- Some HTML/CSS trickery to put the tetrahedron on top of
+         some text about the Sierpinski triangle. -->    
     <div style="position: relative; width: 100%">
-      <iframe src="http://en.wikipedia.org/wiki/Sierpinski_triangle"
-        style="position: absolute; width: 100%; height: 600px;">
-      </iframe>
+      <div style="position: absolute; width: 75%; margin-top: 20ex; margin-left: 10ex; font-size: 150%;">
+        Generally speaking, <em>recursion</em> occurs when something
+        refers to, or is composed of, smaller copies of itself, such
+        as the Sierpinski triangle.  This triangle is made up of
+        copies of itself, each scaled by a factor of 0.5 in both the
+        <em>x</em> and <em>y</em> directions.
+      </div>
       <div style="position: absolute; width: 100%; top: 5em; text-align: center;">
         <canvas id="sierpinski" width="512" height="512">
           Your web browser does not support the
