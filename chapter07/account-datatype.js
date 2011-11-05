@@ -5,7 +5,7 @@ var Account = function (id, owner) {
     this.id = id;
     this.owner = owner;
     this.balance = 0;
-}
+};
 
 /*
  * Deposits or withdraws from an account, depending on whether the
@@ -20,4 +20,4 @@ Account.prototype.transfer = function (amount) {
         throw "Transaction not accepted.";
     }
     this.balance = tentativeBalance;
-}
+};
