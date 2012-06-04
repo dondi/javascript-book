@@ -23,9 +23,9 @@ var hanoi = function (height, towerCount, ringHeight) {
             // For variety, we'll display odd and even rings differently.
             // The class attribute in HTML tags is accessed via the property
             // name className in JavaScript.
-            ring.className = (i % 2 == 0) ? "ring" : "oddring";
+            ring.className = (i % 2) ? "oddring" : "ring";
             towers[0].push(ring);
-            
+
             // The next ring is smaller.
             ringWidth -= ringHeight;
         }
